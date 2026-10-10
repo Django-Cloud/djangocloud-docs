@@ -15,7 +15,7 @@ Your app is started with **uvicorn** when it has an ASGI app (`asgi_module`), an
 
 ## Always on, and no background workers yet
 
-* Your app runs around the clock and is billed that way. There is no scale-to-zero, which also means no cold starts.
+* Your app runs around the clock. There is no scale-to-zero, which also means no cold starts.
 * Each deployment runs **one web process**. Background workers (Celery) and scheduled jobs (cron) are **coming soon** and are not available yet. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works today.
 
 ## Build and source limits
@@ -58,8 +58,4 @@ Logs and metrics are collected every few minutes, so the newest lines can be a l
 
 ## Self-hosted: you run your own cloud
 
-On Self-hosted, your app runs in your AWS account. You pay AWS directly, and AWS limits and quotas on your account apply. On Fully managed we run it in a dedicated AWS account for you, so there is no AWS account to look after.
-
-## Early access
-
-DjangoCloud is early. Some things, such as custom domains, are new and may need a retry or a word in Slack. The [Slack community](../../community-and-support/support/) is the best place to ask what's ready.
+On Self-hosted, your app runs in your AWS account, so AWS limits and quotas on your account apply. On Fully managed we run it in a dedicated AWS account for you, so there is no AWS account to look after.

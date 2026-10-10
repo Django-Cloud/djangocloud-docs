@@ -21,7 +21,7 @@ A restore never changes your current database. It **creates a new database** fro
 2. Lightsail builds the new database. This takes up to about 15 minutes. **Your current database keeps running, and your app keeps using it.**
 3. When the new database is ready, your connection variables (`DATABASE_URL` and the `DJANGOCLOUD_HOSTED_DB_*` variables) are updated to point at it. If you set your own `DATABASE_URL`, we leave it alone and only update the `DJANGOCLOUD_HOSTED_DB_*` variables.
 4. Your app starts using the restored database **from your next deploy**.
-5. The old database stays, untouched, until you delete it. It keeps costing money until then.
+5. The old database stays, untouched, until you delete it.
 
 Your settings do not change. They read the same variables, which now point at the restored database.
 
@@ -48,8 +48,6 @@ Check that your app works on the restored database. Only then delete the old one
 | Delete the database from its page | **No.** The data is gone for good. |
 | Delete the previous database after a restore | **No.** The data is gone for good. |
 | Delete the whole deployment | **Yes.** It is kept in your AWS account until you delete it. See [Deleting a deployment](../../how-it-works/deleting-and-disconnecting/). |
-
-Snapshots are billed by AWS at storage prices.
 
 ## Migrations and your data
 

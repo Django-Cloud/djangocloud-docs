@@ -25,7 +25,3 @@ Never paste access keys, tokens or the contents of your environment variables.
 | Ask a how-to question or share what you built | The Slack community. |
 | Report something that looks broken | The Slack community, with the details above. |
 | Check what's known to be unfinished | [Known limitations](../../reference/limitations/). |
-
-## Paid support
-
-The Fully managed plan includes priority support.

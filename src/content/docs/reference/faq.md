@@ -35,10 +35,6 @@ Yes. If your project has an ASGI app (every `startproject` does), it is started 
 
 Not yet: they are coming soon. Today each deployment runs one web process. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works in the meantime.
 
-## What does a small project really cost?
-
-About the price of one Nano server and a Micro Postgres database, plus the subscription. The app is always on, so there is no free tier or scale-to-zero. See [Pricing](../pricing/) for the current numbers and an example.
-
 ## Which Python and Django versions?
 
 Python 3.10 to 3.13. The CLI needs Django 4.2 or newer.

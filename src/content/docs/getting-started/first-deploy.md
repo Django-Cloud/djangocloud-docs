@@ -25,8 +25,8 @@ You're not signed in yet.
 Open https://djangocloud.dev/dashboard/cli/?code=ABCD-EFGH and check that the code is ABCD-EFGH.
 ✓ Signed in as you@example.com
 ? Which project is this?  Create a new project
-? Server size  Nano  0.25 vCPU, 0.5 GB RAM  ~$7/month on AWS
-? AWS bills you about $7/month for this server, directly in your own AWS account. Continue? Yes
+? Server size  Nano  0.25 vCPU, 0.5 GB RAM
+? Create this server in your own AWS account? Yes
 ✓ Linked to my-shop (.djangocloud/config.json)
 Deploying my-shop
 ✓ Wrote build settings to .djangocloud/config.json

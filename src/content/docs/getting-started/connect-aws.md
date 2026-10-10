@@ -1,9 +1,9 @@
 ---
 title: "Connect your AWS account"
-description: "DjangoCloud runs your app in your AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices."
+description: "DjangoCloud runs your app in your AWS account, on Amazon Lightsail, through a limited IAM role."
 ---
 
-DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices. To do that it needs access to your account. The recommended way is an **IAM role** that trusts DjangoCloud: nothing secret is stored, and you revoke access by deleting the role. An IAM access key is available as a fallback.
+DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. To do that it needs access to your account. The recommended way is an **IAM role** that trusts DjangoCloud: nothing secret is stored, and you revoke access by deleting the role. An IAM access key is available as a fallback.
 
 <div style="aspect-ratio:16/9;max-width:100%;margin:1.5rem 0"><iframe src="https://www.youtube.com/embed/OB9ktTUv66s" title="Connect your AWS account to Django Cloud" loading="lazy" style="width:100%;height:100%;border:0;border-radius:8px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 
@@ -152,9 +152,7 @@ Create a dedicated IAM user for this. Never use your root account keys.
 
 DjangoCloud checks the keys with AWS before saving them. You can switch an existing key connection to a role at any time from the same page; the stored key is then deleted.
 
-## What this costs you
-
-Your app's servers are billed by AWS at Lightsail list prices. Builds run in AWS CodeBuild in your account and cost a few cents each.
+## New AWS accounts
 
 :::note
 If your AWS account is brand new, AWS may need some hours to enable builds for it the first time. DjangoCloud asks for it automatically and shows "Waiting for AWS to enable builds" on your deployment page, then continues on its own.

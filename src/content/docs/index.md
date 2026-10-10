@@ -34,9 +34,4 @@ The CLI is [`djangocloud-cli` on PyPI](https://pypi.org/project/djangocloud-cli/
 * **Curious how your app is run?** Read [How your app is run](how-it-works/how-your-app-runs/): uvicorn or gunicorn, static files, health checks and what we add to your settings.
 * **Want deploys on every push?** [Connect GitHub](getting-started/github/).
 * **Wondering what is and isn't supported?** Read the [known limitations](reference/limitations/) before you build on it.
-* **What does it cost?** See [Pricing](reference/pricing/).
 * **Stuck?** Come to [Slack](community-and-support/support/).
-
-:::note
-DjangoCloud is in early access. Some features are still being finished, and the pages say so where it matters.
-:::

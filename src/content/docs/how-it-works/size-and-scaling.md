@@ -16,8 +16,6 @@ Each deployment runs on one or more identical **instances**. You choose the size
 | Large | 2 | 4 GB |
 | XLarge | 4 | 8 GB |
 
-Prices are on the [Pricing](../../reference/pricing/) page.
-
 ## Changing size or instance count
 
 Open your deployment, go to **Settings**, and choose a size and a number of instances between **1 and 20**. The change is recorded straight away and then applied to the running service in the background, so you don't need to deploy again. On Fully managed the new size is billed first. If applying it fails, the deployment keeps its current size and the reason is shown.
@@ -29,7 +27,7 @@ djangocloud scale                          # pick a size from a list, then the n
 djangocloud scale --size small --instances 3
 ```
 
-The CLI shows the old and the new size with the monthly price, asks to confirm (`-y` skips that), and then waits until the change is applied. `--no-wait` returns as soon as it is queued, and `djangocloud status` shows the size at any time. Leave out `--size` or `--instances` to keep the current value of that one. Both are limited to the sizes above and 1 to 20 instances, and only one change can run at a time. In [CI](../../getting-started/ci/) give both flags, with `--no-input` in front: `djangocloud --no-input scale --size small --instances 3 -y`. See the [CLI reference](../../reference/cli/) for the flags.
+The CLI shows the old and the new size, asks to confirm (`-y` skips that), and then waits until the change is applied. `--no-wait` returns as soon as it is queued, and `djangocloud status` shows the size at any time. Leave out `--size` or `--instances` to keep the current value of that one. Both are limited to the sizes above and 1 to 20 instances, and only one change can run at a time. In [CI](../../getting-started/ci/) give both flags, with `--no-input` in front: `djangocloud --no-input scale --size small --instances 3 -y`. See the [CLI reference](../../reference/cli/) for the flags.
 
 ### Autoscaling
 
