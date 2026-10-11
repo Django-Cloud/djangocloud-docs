@@ -52,6 +52,14 @@
         "slug": "guides/admin-user"
       },
       {
+        "label": "Task queues and workers",
+        "slug": "guides/task-queues-and-workers"
+      },
+      {
+        "label": "File storage",
+        "slug": "guides/file-storage"
+      },
+      {
         "label": "Background tasks and scheduled jobs",
         "slug": "guides/background-tasks"
       }

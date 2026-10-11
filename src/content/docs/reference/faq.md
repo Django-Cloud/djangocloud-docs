@@ -13,7 +13,7 @@ Not in production. The container's disk is wiped on every deploy and restart. Us
 
 ## Where do my uploaded files go?
 
-Not on local disk. Use object storage such as Amazon S3. See [the ephemeral container](../../how-it-works/ephemeral-container/).
+Not on local disk. Add [file storage](../../guides/file-storage/), a private bucket in your AWS environment, and paste one snippet into `settings.py`. See also [the ephemeral container](../../how-it-works/ephemeral-container/).
 
 ## Can I deploy on every push?
 
@@ -33,7 +33,7 @@ Yes. If your project has an ASGI app (every `startproject` does), it is started 
 
 ## Can I run Celery workers or cron jobs?
 
-Not yet: they are coming soon. Today each deployment runs one web process. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works in the meantime.
+Celery workers, yes: add a queue and turn on a worker, and your tasks run in a second container next to your app. See [Task queues and workers](../../guides/task-queues-and-workers/). Scheduled jobs (Celery beat and cron) are not available yet. See [Background tasks and scheduled jobs](../../guides/background-tasks/).
 
 ## Which Python and Django versions?
 

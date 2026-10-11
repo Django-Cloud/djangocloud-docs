@@ -156,4 +156,4 @@ Everything your app writes to standard output and standard error is collected in
 
 * No SSH or shell access to the container.
 * No persistent disk and no shared filesystem between instances.
-* No built-in cron or task worker. See [background tasks](../../guides/background-tasks/).
+* No built-in cron. A [Celery worker](../../guides/task-queues-and-workers/) is available, see [background tasks](../../guides/background-tasks/).

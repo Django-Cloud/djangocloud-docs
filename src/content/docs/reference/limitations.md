@@ -7,16 +7,17 @@ What to know before you build on DjangoCloud. We list these plainly so you aren'
 
 ## The container is ephemeral
 
-Files written to disk are lost on every restart and deploy. Use a managed database and object storage. See [Persistent files and the ephemeral container](../../how-it-works/ephemeral-container/).
+Files written to disk are lost on every restart and deploy. Use a managed database and [file storage](../../guides/file-storage/). See [Persistent files and the ephemeral container](../../how-it-works/ephemeral-container/).
 
 ## How your app is served
 
 Your app is started with **uvicorn** when it has an ASGI app (`asgi_module`), and with gunicorn when it only has a WSGI app. Both use the `workers` from your [build settings](../../how-it-works/build-settings/). Websockets work with uvicorn. Each deployment is a single small container, so the number of concurrent connections is limited by its size, and a restart or deploy closes open connections. You can replace the command with `start_command`, but that is your own responsibility to test.
 
-## Always on, and no background workers yet
+## Always on, and no scheduled jobs yet
 
 * Your app runs around the clock. There is no scale-to-zero, which also means no cold starts.
-* Each deployment runs **one web process**. Background workers (Celery) and scheduled jobs (cron) are **coming soon** and are not available yet. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works today.
+* Each deployment runs one web process. A [Celery worker](../../guides/task-queues-and-workers/) runs as a second container next to it, shares the server's CPU and memory, and runs once per instance.
+* Scheduled jobs (Celery beat and cron) are **not available yet**. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works today.
 
 ## Build and source limits
 

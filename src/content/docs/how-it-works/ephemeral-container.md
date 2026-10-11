@@ -14,10 +14,11 @@ Never keep data you care about on the container's disk. That includes uploaded f
 | What | Do this instead |
 | --- | --- |
 | **Database** | Use a managed Postgres database. SQLite files are lost on every deploy. |
-| **User uploads** (`MEDIA_ROOT`) | Store them in object storage such as Amazon S3, for example with `django-storages`. |
+| **User uploads** (`MEDIA_ROOT`) | Use [file storage](../../guides/file-storage/): a private bucket, connected with `django-storages`. |
 | **Static files** | `collectstatic` runs during the build, so they are baked into the image. Serve them with WhiteNoise or from object storage. |
 | **Sessions and cache** | Use the database, or an external cache. Don't rely on files or in-process memory, especially with more than one instance. |
-| **Scheduled and background work** | Run it as a separate service. A process inside the web container stops whenever the container does. |
+| **Background work** | Use a [Celery worker](../../guides/task-queues-and-workers/). A thread or process inside the web container stops whenever the container does. |
+| **Scheduled work** | Not available yet. Trigger it from outside, see [background tasks](../../guides/background-tasks/). |
 
 ## More than one instance
 

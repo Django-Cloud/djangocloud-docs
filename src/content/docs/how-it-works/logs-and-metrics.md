@@ -7,13 +7,14 @@ See what your app is doing without opening the AWS console.
 
 ## Logs
 
-The **Logs** tab of a deployment shows three kinds of lines:
+The **Logs** tab of a deployment shows these kinds of lines:
 
 | Source | What it is |
 | --- | --- |
 | **App** | Everything your app writes to standard output and standard error. Use a console log handler. |
 | **Build** | The output of building your image, including the `[djangocloud]` notes about [your settings](../how-your-app-runs/). |
 | **Release** | What DjangoCloud did to roll your release out: deploying, health checks, and why a release failed. |
+| **Worker** | What your [Celery worker](../../guides/task-queues-and-workers/) writes, when you have one. |
 
 ### Searching
 
@@ -21,7 +22,7 @@ The **Logs** tab of a deployment shows three kinds of lines:
 * **Exclude** hides lines that contain any of its terms, which is handy for silencing a noisy health check.
 * **Time range:** the last 15 minutes, 1 hour, 6 hours, 24 hours, 7 days, or all, or a **custom range** (in UTC).
 * **Level:** all levels, warnings and errors, or errors only. The level is read from the line's own text.
-* **Source:** app, build or release.
+* **Source:** app, build, release or worker.
 * **Live** keeps the view up to date every few seconds. Switch it off to read without it moving.
 
 The page shows the newest 300 matching lines and tells you when there are more, so narrow the range or add a search term to get to older ones. Lines keep the time your app logged them.
