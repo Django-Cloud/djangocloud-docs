@@ -40,7 +40,7 @@ Every time DjangoCloud uses the role, AWS writes it to **CloudTrail**, a log tha
 
 ## How do I cut access off?
 
-Delete the stack named `djangocloud` in **CloudFormation** (or delete the role `djangocloud-deployer` in **IAM**). Access ends immediately. Your running app keeps running, but DjangoCloud can no longer change it. You can also click **Disconnect** in **Settings → AWS account**; see [Deleting and disconnecting](../../how-it-works/deleting-and-disconnecting/).
+Delete the stack named `djangocloud-<region>` (for example `djangocloud-eu-west-1`) in **CloudFormation** (or delete the role `djangocloud-deployer` in **IAM**). Access ends immediately. Your running app keeps running, but DjangoCloud can no longer change it. You can also click **Disconnect** in **Settings → AWS account**; see [Deleting and disconnecting](../../how-it-works/deleting-and-disconnecting/).
 
 ## Things worth doing for extra safety
 
