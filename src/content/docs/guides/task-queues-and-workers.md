@@ -72,7 +72,9 @@ This assumes Celery reads its settings with the `CELERY_` prefix, as in the `cel
 
 ### 4. Turn the worker on, and deploy
 
-**Workers**, then your deployment, enter where your Celery app lives (for example `config.celery:app`), and turn it on. Then deploy.
+**Workers**, then your deployment, and turn it on. Then deploy.
+
+You do not have to say where your Celery app lives: when DjangoCloud builds your image it looks through your code for `app = Celery(...)` (normally the `celery.py` from step 2) and starts the worker with it. If you have more than one, or want to be explicit, enter the place yourself, for example `config.celery:app`. That always wins over what we find.
 
 :::note
 **You do not install Celery's SQS support.** When DjangoCloud builds your image it adds `celery[sqs]` (and `django-storages[s3]` if you use [file storage](../file-storage/)) after your own requirements, so anything you pinned is kept. If you use [your own Dockerfile](../../how-it-works/build-settings/), it is not touched: add `celery[sqs]` there.
@@ -85,9 +87,19 @@ They are saved encrypted on your deployment and given to your app **and to its w
 * `DJANGOCLOUD_QUEUE_BROKER_URL`, `DJANGOCLOUD_QUEUE_ACCESS_KEY_ID`, `DJANGOCLOUD_QUEUE_SECRET_ACCESS_KEY`
 * `DJANGOCLOUD_QUEUE_REGION`, `DJANGOCLOUD_QUEUE_PREFIX`
 * `CELERY_BROKER_URL`, unless you already set your own. We never replace yours.
-* `DJANGOCLOUD_WORKER_APP` when the worker is on.
 
 Like every variable, they are saved into each release. **Adding a queue does not change a release that is already live**: the variables reach your app on its next deploy, and a rollback restores the variables that release had. See [Environment variables](../../how-it-works/environment-variables/).
+
+### Variables for the worker or the web app only
+
+Both containers get the same variables, which is usually what you want. To give one of them a variable the other should not have, start its name with `WORKER_ONLY__` or `WEB_ONLY__`. The container that matches gets it **without the prefix**, and the other one does not get it at all:
+
+```
+WORKER_ONLY__STRIPE_SECRET_KEY=rk_live_...   # the worker sees STRIPE_SECRET_KEY, the web app has none
+WEB_ONLY__SESSION_COOKIE_DOMAIN=example.com  # the web app sees SESSION_COOKIE_DOMAIN
+```
+
+A prefixed variable beats a plain one of the same name in its own container. Use it for secrets that only background tasks need.
 
 ## The worker
 
@@ -135,5 +147,6 @@ The numbers come from AWS and are refreshed about every 5 minutes.
 
 * **Nothing runs.** Open the queue's **Overview** and read the checklist. The usual causes are the snippet missing from `settings.py`, or no deploy since you added the queue.
 * **"DjangoCloud isn't allowed to create a task queue."** On Self-hosted, update your DjangoCloud CloudFormation stack (**Settings**, then **AWS account**) and retry.
+* **"We couldn't find your Celery app in your code."** Add the `celery.py` from step 2 (it must contain `app = Celery(...)`), or enter the place of your app on the Workers page, and deploy again. Files in folders called `tests`, `migrations` or `docs` are not searched.
 * **Tasks wait a long time.** The worker is slow or busy. Check the Logs, then give the server more CPU or run more instances.
 * **A task failed for good.** Search the Logs for the task name. Tasks in the dead-letter queue stay for 14 days.
